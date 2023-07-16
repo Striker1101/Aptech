@@ -1,0 +1,319 @@
+Exercise 1: Welcome Message
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="script.js"></script>
+</head>
+<body>
+  <script>
+    // Prompt the user for their name
+    var name = prompt("Enter your name:");
+
+    // Display a welcome message with the user's name
+    alert("Welcome, " + name + "!");
+  </script>
+</body>
+</html>
+
+Exercise 2: Area of a Rectangle
+
+// Prompt the user for the length and width of the rectangle
+var length = parseFloat(prompt("Enter the length of the rectangle:"));
+var width = parseFloat(prompt("Enter the width of the rectangle:"));
+
+// Calculate the area
+var area = length * width;
+
+// Display the area
+console.log("The area of the rectangle is: " + area);
+
+
+Exercise 3: Celsius to Fahrenheit Conversion
+
+// Prompt the user for the temperature in Celsius
+var celsius = parseFloat(prompt("Enter the temperature in Celsius:"));
+
+// Convert Celsius to Fahrenheit
+var fahrenheit = (celsius * 9/5) + 32;
+
+// Display the converted temperature in Fahrenheit
+console.log("The temperature in Fahrenheit is: " + fahrenheit);
+
+Exercise 4: Even or Odd Number
+// Prompt the user for a number
+var number = parseInt(prompt("Enter a number:"));
+
+// Check if the number is even or odd
+if (number % 2 === 0) {
+  console.log(number + " is even.");
+} else {
+  console.log(number + " is odd.");
+}
+
+
+Exercise 5: Reverse a String
+
+// Prompt the user for a string
+var inputString = prompt("Enter a string:");
+
+// Reverse the string
+var reversedString = "";
+for (var i = inputString.length - 1; i >= 0; i--) {
+  reversedString += inputString[i];
+}
+
+// Display the reversed string
+console.log("Reversed string: " + reversedString);
+
+
+Exercise 6: Guess the Number
+
+// Generate a random number between 1 and 10
+var randomNumber = Math.floor(Math.random() * 10) + 1;
+
+// Prompt the user to guess the number
+var guess = parseInt(prompt("Guess the number between 1 and 10:"));
+
+// Keep track of the number of attempts
+var attempts = 1;
+
+// Provide feedback to the user until they guess the correct number
+while (guess !== randomNumber) {
+  if (guess > randomNumber) {
+    console.log("Too high! Try again.");
+  } else {
+    console.log("Too low! Try again.");
+  }
+  
+  guess = parseInt(prompt("Guess the number between 1 and 10:"));
+  attempts++;
+}
+
+// Display success message and number of attempts
+console.log("Congratulations! You guessed the correct number in " + attempts + " attempts.");
+
+
+
+Exercise 7: Factorial Calculation
+
+// Prompt the user for a number
+var number = parseInt(prompt("Enter a number:"));
+
+// Calculate the factorial of the number
+var factorial = 1;
+for (var i = 1; i <= number; i++) {
+  factorial *= i;
+}
+
+// Display the factorial
+console.log("The factorial of " + number + " is: " + factorial);
+
+
+Exercise 8: Basic Arithmetic Operations
+
+// Prompt the user for two numbers
+var number1 = parseFloat(prompt("Enter the first number:"));
+var number2 = parseFloat(prompt("Enter the second number:"));
+
+// Perform addition, subtraction, multiplication, and division
+var sum = number1 + number2;
+var difference = number1 - number2;
+var product = number1 * number2;
+var quotient = number1 / number2;
+
+// Display the results
+console.log("Sum: " + sum);
+console.log("Difference: " + difference);
+console.log("Product: " + product);
+console.log("Quotient: " + quotient);
+
+
+
+Exercise 9: Current Date and Time
+
+// Get the current date and time
+var currentDate = new Date();
+
+// Display the current date and time
+console.log("Current Date and Time: " + currentDate);
+
+
+Exercise 10: Voting Eligibility
+// Prompt the user for their age
+var age = parseInt(prompt("Enter your age:"));
+
+// Check if the user is eligible to vote
+if (age >= 18) {
+  console.log("You are eligible to vote.");
+} else {
+  console.log("You are not eligible to vote.");
+}
+
+
+Project 1: Calculator
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="script.js"></script>
+</head>
+<body>
+  <input type="number" id="num1">
+  <select id="operator">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+  <input type="number" id="num2">
+  <button onclick="calculate()">Calculate</button>
+  <p id="result"></p>
+</body>
+</html>
+
+
+js
+
+function calculate() {
+  var num1 = parseFloat(document.getElementById("num1").value);
+  var num2 = parseFloat(document.getElementById("num2").value);
+  var operator = document.getElementById("operator").value;
+  var result;
+
+  if (operator === "+") {
+    result = num1 + num2;
+  } else if (operator === "-") {
+    result = num1 - num2;
+  } else if (operator === "*") {
+    result = num1 * num2;
+  } else if (operator === "/") {
+    result = num1 / num2;
+  }
+
+  document.getElementById("result").innerHTML = "Result: " + result;
+}
+
+Project 2: Todo List
+
+html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="script.js"></script>
+</head>
+<body>
+  <h1>Todo List</h1>
+  <input type="text" id="taskInput">
+  <button onclick="addTask()">Add Task</button>
+  <ul id="taskList"></ul>
+</body>
+</html>
+
+
+js
+
+var tasks = [];
+
+function addTask() {
+  var taskInput = document.getElementById("taskInput");
+  var task = taskInput.value;
+  tasks.push(task);
+  displayTasks();
+  taskInput.value = "";
+}
+
+function displayTasks() {
+  var taskList = document.getElementById("taskList");
+  taskList.innerHTML = "";
+
+  for (var i = 0; i < tasks.length; i++) {
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(tasks[i]));
+    taskList.appendChild(li);
+  }
+}
+
+
+Project 3: Quiz Game
+
+changes where made to the answers html 
+read carefully and understand
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="script.js"></script>
+</head>
+<body>
+  <h1>Quiz Game</h1>
+  <div id="question"></div>
+  <div id="options">
+    <button onclick="checkAnswer(0)"></button>
+    <button onclick="checkAnswer(1)"></button>
+    <button onclick="checkAnswer(2)"></button>
+    <button onclick="checkAnswer(3)"></button>
+  </div>
+  <p id="score"></p>
+</body>
+</html>
+
+
+js
+var questions = [
+  {
+    question: "What is the capital of France?",
+    options: ["Paris", "London", "Berlin", "Rome"],
+    answer: 0
+  },
+  {
+    question: "What is the largest planet in our solar system?",
+    options: ["Mars", "Venus", "Jupiter", "Saturn"],
+    answer: 2
+  },
+  {
+    question: "Who painted the Mona Lisa?",
+    options: ["Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh", "Michelangelo"],
+    answer: 0
+  }
+];
+
+var currentQuestion = 0;
+var score = 0;
+
+function displayQuestion() {
+  var questionDiv = document.getElementById("question");
+  var optionsDiv = document.getElementById("options");
+
+  questionDiv.innerHTML = questions[currentQuestion].question;
+
+  for (var i = 0; i < questions[currentQuestion].options.length; i++) {
+    optionsDiv.children[i].innerHTML = questions[currentQuestion].options[i];
+  }
+}
+
+function checkAnswer(option) {
+  if (option === questions[currentQuestion].answer) {
+    score++;
+  }
+
+  currentQuestion++;
+  
+  if (currentQuestion === questions.length) {
+    endGame();
+  } else {
+    displayQuestion();
+  }
+}
+
+function endGame() {
+  var scoreDiv = document.getElementById("score");
+  scoreDiv.innerHTML = "Your Score: " + score + "/" + questions.length;
+}
+
+displayQuestion();
+
+
+
+
+

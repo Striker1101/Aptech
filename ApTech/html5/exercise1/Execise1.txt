@@ -1,0 +1,128 @@
+Exercises:
+
+1. Write a JavaScript program that prompts the user for their name and displays a welcome message with their name.
+
+2. Create a JavaScript program that calculates the area of a rectangle. Prompt the user for the length and width of the rectangle, and display the calculated area.
+
+3. Write a JavaScript program that converts a temperature in Celsius to Fahrenheit. Prompt the user for the temperature in Celsius and display the equivalent temperature in Fahrenheit.
+
+4. Create a JavaScript program that checks whether a number entered by the user is even or odd.
+
+5. Write a JavaScript program that takes a string as input and displays the reverse of the string.
+
+6. Create a JavaScript program that generates a random number between 1 and 10 and asks the user to guess the number. Provide feedback to the user indicating whether their guess is too high or too low until they guess the correct number.
+
+7. Write a JavaScript program that calculates the factorial of a number entered by the user.
+
+8. Create a JavaScript program that prompts the user for two numbers and performs basic arithmetic operations (addition, subtraction, multiplication, division) on those numbers.
+
+9. Write a JavaScript program that displays the current date and time.
+
+10. Create a JavaScript program that prompts the user to enter their age and displays a message indicating whether they are eligible to vote.
+
+
+
+project 1
+
+create a receipt container for a company were they can add new receipt { tittle, date, description}
+with a button that would change the background color between 5 different colors of the receipt container 
+
+adding css is optional 
+its a must to use good commenting 
+use of good variable names is compulsary
+
+. use chat gbt to get code snippet and work with it 
+. do my research on events handling
+. research on Math methods ( its a pre-defined funtion )
+. DOM Trees and Maniputlation
+
+
+
+Html template
+
+   <div id="container">
+        
+        <div cid="receiptContainer">
+
+          <!--  button to change color  -->
+           <button id="changeColor"> Change Color</button>
+
+            <!--  dummy receipt  -->
+            <div class="receipt">
+                <h1>Polaris bank statement</h1>
+                 <div>Date: <span>20/03/2013</span></div>
+                 <p>This is a statement on the transfer of $4k to miss william</p>
+            </div>
+    
+    
+           <!-- rest receipt goes here -->
+        </div>
+        <form action="" id="form">
+            <!--input goes here -->
+        </form>
+    </div>
+
+
+project 2
+Quiz Game: Build a quiz game using JavaScript, HTML, and CSS. Create a set of questions and multiple-choice answers. Display the questions to the user, keep track of their score, and provide feedback on their answers.
+
+html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h1>Quiz Game</h1>
+  <div id="question"></div>
+  <div id="options">
+    <button id="optionA">A</button>
+    <button id="optionB">B</button>
+    <button id="optionC">C</button>
+    <button id="optionD">D</button>
+  </div>
+  <p id="score"></p>
+</body>
+</html>
+
+
+project 3
+Calculator: Create a web-based calculator using HTML, CSS, and JavaScript. Implement basic arithmetic operations and provide a user-friendly interface for performing calculations.
+
+html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <input type="number" id="num1">
+  <select id="operator">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+  <input type="number" id="num2">
+  <button onclick="calculate()">Calculate</button>
+  <p id="result"></p>
+</body>
+</html>
+
+project 4
+Todo List: Develop a web application that allows users to manage their todo list. Users can add tasks, mark them as completed, and delete tasks. Implement the functionality using JavaScript and HTML.
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="script.js"></script>
+</head>
+<body>
+  <h1>Todo List</h1>
+  <input type="text" id="taskInput">
+  <button onclick="addTask()">Add Task</button>
+  <ul id="taskList"></ul>
+</body>
+</html>
+
+
