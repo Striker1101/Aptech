@@ -1,0 +1,81 @@
+Exercises:
+
+Loop Practice:
+Write a function that takes an array of numbers as input and returns
+ the sum of all the numbers in the array. Use a loop to iterate through
+ the array and add each element to a running total.
+
+Object Manipulation:
+Create an object representing a student with properties like name,
+ age, grade, and favorite subject. Write a function that takes this object 
+as input and prints out the student's information in a formatted way,
+ such as "Name: [name], Age: [age], Grade: [grade], Favorite Subject: [favorite subject]".
+
+Array Filtering:
+Write a function that takes an array of strings as input and returns a
+ new array containing only the strings that have more than five characters.
+ Use the filter method to achieve this.
+
+Project Ideas:
+
+Todo List Manager:
+Create a command-line or web-based application that allows users to manage
+ their todo lists. Implement features like adding tasks, marking tasks as completed,
+ listing tasks, and removing tasks. Use arrays and objects to store and manipulate the data.
+
+Step-by-step process:
+
+1. Create an HTML file with the basic structure, including an input field to enter tasks, 
+a button to add tasks, and an empty unordered list to display the tasks.
+
+2. Create a JavaScript file to handle the logic for adding tasks and displaying them.
+
+3. Define an empty array called taskList to store the tasks.
+
+4. Create a function addTask() that retrieves the text from the input field,
+ trims any leading/trailing whitespace, and adds it to the taskList array if it's not an empty string.
+
+5. Create a function displayTasks() to update the HTML list with the tasks stored in the taskList array.
+
+6. In the displayTasks() function, clear the existing list items,
+ iterate through the taskList array, and create new list items for each task.
+
+7.  Attach event listeners to the "Add Task" button to trigger the addTask() function when clicked.
+
+8. Test the application to ensure that tasks can be added and displayed correctly.
+
+Simple 2D Game:
+Develop a simple 2D game using HTML, CSS, and JavaScript.
+You can use the HTML canvas element to draw the game elements. 
+For example, you could create a game where the player controls a character
+using arrow keys to collect objects while avoiding obstacles. Use functions
+and objects to organize and manage the game's logic and entities.
+
+Step-by-step process:
+
+1. Create an HTML file with a canvas element to render the game
+ and a script tag to link the JavaScript file.
+
+2. Create a JavaScript file to handle the game's logic and rendering.
+
+3. Define the player object with properties like x, y, width, height, and speed.
+
+4. Create a function gameLoop() that serves as the main game loop. 
+This function will be called recursively to update and redraw the game continuously.
+
+5. Inside the gameLoop() function, call two other functions: 
+update() to handle game logic and draw() to handle rendering.
+
+6. In the update() function, check for keyboard input (e.g., using event listeners) 
+and update the player's position accordingly.
+
+7. In the draw() function, clear the canvas, 
+and then draw the player object (e.g., using ctx.fillRect()).
+
+8. Attach event listeners to handle keyboard input (e.g., arrow keys)
+ to update the player's position.
+
+9. Start the game loop by calling gameLoop() function.
+
+10. Test the game to ensure that the player can be moved using the arrow keys
+ and that the canvas is updated accordingly.
