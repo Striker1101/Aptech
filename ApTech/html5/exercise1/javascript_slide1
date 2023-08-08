@@ -1,0 +1,33 @@
+Exercises:
+
+1. Variable Declaration: Declare three variables named name, age, and isStudent. Assign your name to the name variable, your age to the age variable, and true or false to the isStudent variable.
+
+2. Displaying Information: Use console.log() to display the values of the variables declared in the previous exercise.
+
+3. String Concatenation: Declare a variable city and assign it the name of your city. Create a sentence that includes the name and city variables, and display it using console.log().
+
+4. Basic Math Operations: Declare two variables, num1 and num2, and assign them any numeric values. Perform addition, subtraction, multiplication, and division operations on these variables and display the results using console.log().
+
+5. Conditional Statement: Write a program that checks if a given number is even or odd. Display a message based on the result using console.log().
+
+6. Function Definition: Define a function named greet that takes a name parameter and returns a greeting message. Call the function with your name and display the returned message using console.log().
+
+7. Arrays: Create an array of your favorite fruits. Use indexing to display the second and third fruits in the array.
+
+8. Looping: Write a loop that prints numbers from 1 to 10 using console.log().
+
+9. Event Handling: Create an HTML button element with an id. Use JavaScript to attach a click event listener to the button that displays a message in the console when clicked.
+
+10. Working with Strings: Declare a variable sentence with a sentence of your choice. Use the .split() method to convert the sentence into an array of words and display it using console.log().
+
+Projects:
+
+1. Interactive Quiz: Create an HTML page with a question and multiple-choice answers. Use JavaScript to display feedback when the user selects an answer and keep track of the score.
+
+2. Tip Calculator: Build a web page where users can enter a bill amount and select a tip percentage. Calculate and display the total bill, including the tip.
+
+3. To-Do List App: Create a simple to-do list application where users can add tasks, mark them as completed, and remove them from the list.
+
+4. Simple Web Page: Design a personal webpage using HTML and CSS to showcase your interests, hobbies, and a short bio. Include links to your social media profiles.
+
+5. Image Slider: Develop a basic image slider that displays a series of images in a loop. Add previous and next buttons to navigate through the images.
