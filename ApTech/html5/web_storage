@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Storage</title>
+  </head>
+  <body style="margin: 20px;
+    background-color:grey; color:
+     white;"">
+    <h1 id="header">this is a header file</h1>
+    <button id="red">RED</button>
+    <button id="blue">BLUE</button>
+
+    <form action="" id="form" style="margin-top: 50px">
+      <label for="username">
+        USERNAME:
+        <input  type="text" id="username" /> </label
+      ><br />
+
+      <label for="passsword">
+        PASSWORD:
+        <input type="password" id="password" /> </label
+      ><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+      // Open a database or create if it doesn't exist
+      const request = indexedDB.open("myDatabase", 1);
+
+      // Handle database creation or upgrade
+      request.onupgradeneeded = function (event) {
+        const db = event.target.result;
+
+        // Create an object store (similar to a table in SQL)
+        const objectStore = db.createObjectStore("students", {
+          keyPath: "id",
+          autoIncrement: true,
+        });
+      };
+
+      // Handle database opening success
+      request.onsuccess = function (event) {
+        const db = event.target.result;
+
+        // Start a transaction
+        const transaction = db.transaction(["students"], "readwrite");
+
+        // Get the object store
+        const objectStore = transaction.objectStore("students");
+
+        // Add data to the object store
+        objectStore.add({ name: "Alice", age: 20 });
+        objectStore.add({ name: "Bob", age: 22 });
+
+        // Retrieve data from the object store
+        const retrieveRequest = objectStore.get(1);
+
+        retrieveRequest.onsuccess = function (event) {
+          const student = event.target.result;
+          if (student) {
+            console.log("Retrieved student:", student);
+          } else {
+            console.log("Student not found.");
+          }
+        };
+
+        // Complete the transaction
+        transaction.oncomplete = function () {
+          db.close();
+        };
+      };
+
+      // Handle database opening error
+      request.onerror = function (event) {
+        console.error("Database error:", event.target.error);
+      };
+    </script>
+
+    <script>
+      //local storage  && session storage
+
+      // Set data in localStorage
+      localStorage.setItem("username", "john_doe");
+      localStorage.setItem("age", 25);
+
+      // Get data from localStorage
+      const username = localStorage.getItem("username");
+      const age = localStorage.getItem("age");
+
+      console.log("Username:", username); // Output: Username: john_doe
+      console.log("Age:", age); // Output: Age: 25
+
+      // Update data in localStorage
+      localStorage.setItem("age", 26);
+
+      // Get updated data from localStorage
+      const updatedAge = localStorage.getItem("age");
+      console.log("Updated Age:", updatedAge); // Output: Updated Age: 26
+
+      // Remove a specific item from localStorage
+      localStorage.removeItem("username");
+
+      // Check if an item exists in localStorage
+      if (localStorage.getItem("username") === null) {
+        console.log("Username does not exist.");
+      }
+
+      // Clear all data from localStorage
+      localStorage.clear();
+
+      console.log("Data after clearing:", localStorage.getItem("age")); // Output: Data after clearing: null
+    </script>
+
+    <script>
+      //event handing
+      const header = document.getElementById("header")
+      const red = document.getElementById("red")
+      const blue = document.getElementById("blue")
+      const form = document.getElementById('form');
+     
+
+      red.addEventListener("click", function(){
+        header.style.color ="red"
+      })
+
+      blue.addEventListener("click", function(){
+        header.style.color ="blue"
+      })
+
+      form.addEventListener("submit", function(e){
+
+         //to prevent the form default character
+         e.preventDefault()   
+
+        const username2 = document.getElementById("username").value
+        const password = document.getElementById("password").value
+    
+        console.log(username2, password)
+         
+         alert(" This is " + username2 +" and password is "+ password)
+      })
+
+    </script>
+  </body>
+</html>
