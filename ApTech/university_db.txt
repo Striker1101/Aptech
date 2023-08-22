@@ -328,3 +328,27 @@ SELECT
         ELSE 'This student does not qualify for Academic Honors.'
     END AS HonorsStatus
 FROM student;
+
+--while loop
+DECLARE @flag int
+SET @flag = 10
+WHILE (@flag <=95)
+  BEGIN
+  IF @flag%2 =0
+   PRINT @flag
+   SET @flag = @flag + 1
+   CONTINUE;
+END
+GO
+
+
+--functions
+CREATE FUNCTION CalculateAge (@birthdate DATE)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @age INT; -- Declare the variable here
+    SET @age = DATEDIFF(YEAR, @birthdate, GETDATE());
+    RETURN @age;
+END;
+
