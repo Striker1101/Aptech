@@ -316,3 +316,15 @@ CREATE SYNONYM EnrollmentsSynonym FOR dbo.Enrollments;
 SELECT first_name, last_name
 FROM StudentsSynonym
 WHERE department_id = 4;
+
+-- if else
+SELECT 
+    student_id,
+    first_name,
+    last_name,
+    GPA,
+    CASE
+        WHEN GPA >= 3.5 THEN 'This student qualifies for Academic Honors.'
+        ELSE 'This student does not qualify for Academic Honors.'
+    END AS HonorsStatus
+FROM student;
