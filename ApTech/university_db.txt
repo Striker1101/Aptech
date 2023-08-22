@@ -305,3 +305,14 @@ BEGIN
     -- Print a message indicating the second student record has been inserted
     PRINT 'Inserted student: ' + @FirstName + ' ' + @LastName
 END -- End of the batch
+
+
+-- Create synonyms for tables
+CREATE SYNONYM StudentsSynonym FOR dbo.student;
+CREATE SYNONYM CoursesSynonym FOR dbo.Courses;
+CREATE SYNONYM EnrollmentsSynonym FOR dbo.Enrollments;
+
+-- Query using synonyms
+SELECT first_name, last_name
+FROM StudentsSynonym
+WHERE department_id = 4;
