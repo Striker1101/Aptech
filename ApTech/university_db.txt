@@ -1,0 +1,307 @@
+CREATE TABLE faculty (
+    faculty_id INT PRIMARY KEY IDENTITY(1,1),
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    date_of_birth DATE DEFAULT GETDATE(),
+    address VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(20),
+    department_id INT,
+    hire_date DATE
+);
+
+
+CREATE TABLE department (
+    department_id INT PRIMARY KEY IDENTITY(1,1),
+    department_name VARCHAR(100) NOT NULL,
+    faculty_id INT,
+    date DATE DEFAULT GETDATE(),
+    CONSTRAINT FK_Department_Faculty FOREIGN KEY (faculty_id) REFERENCES faculty (faculty_id)
+);
+
+
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY IDENTITY(1,1),
+    course_name VARCHAR(100) NOT NULL,
+    credits INT,
+    department_id INT,
+    instructor_id INT,
+    date DATE DEFAULT GETDATE(),
+    CONSTRAINT FK_Courses_Department FOREIGN KEY (department_id) REFERENCES department (department_id),
+    CONSTRAINT FK_Courses_Instructor FOREIGN KEY (instructor_id) REFERENCES faculty (faculty_id)
+);
+
+CREATE TABLE student (
+    student_id VARCHAR(13) PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    date_of_birth DATE DEFAULT GETDATE(),
+    address VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(20),
+    major VARCHAR(50),
+    admission_date DATE
+);
+
+CREATE TABLE staff (
+    staff_id INT PRIMARY KEY IDENTITY(1,1),
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    date_of_birth DATE DEFAULT GETDATE(),
+    address VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(20),
+    department_id INT,
+    hire_date DATE
+);
+
+CREATE TABLE course_instructors (
+    course_id INT,
+    instructor_id INT,
+    CONSTRAINT FK_CourseInstructors_Courses FOREIGN KEY (course_id) REFERENCES courses (course_id),
+    CONSTRAINT FK_CourseInstructors_Instructors FOREIGN KEY (instructor_id) REFERENCES faculty (faculty_id),
+    PRIMARY KEY (course_id, instructor_id)
+);
+
+
+CREATE TABLE department_courses (
+    department_id INT,
+    course_id INT,
+    CONSTRAINT FK_DepartmentCourses_Department FOREIGN KEY (department_id) REFERENCES department (department_id),
+    CONSTRAINT FK_DepartmentCourses_Courses FOREIGN KEY (course_id) REFERENCES courses (course_id),
+    PRIMARY KEY (department_id, course_id)
+);
+
+
+//ReEditing your Table Attributes
+
+ALTER TABLE student
+ADD department_id INT;
+
+ALTER TABLE student
+ADD CONSTRAINT FK_Student_Department FOREIGN KEY (department_id) REFERENCES department (department_id);
+
+ALTER TABLE student
+DROP CONSTRAINT FK_Student_Department;
+
+ALTER TABLE student
+DROP COLUMN department_id;
+
+ALTER TABLE student
+DROP COLUMN major;
+
+//Populating Tables
+
+INSERT INTO faculty (first_name, last_name, date_of_birth, address, email, phone, department_id, hire_date)
+VALUES
+    ('John', 'Doe', '1980-05-10', '123 Main St', 'john.doe@example.com', '1234567890', 34, '2010-09-01'),
+    ('Jane', 'Smith', '1975-08-20', '456 Oak Ave', 'jane.smith@example.com', '9876543210', 53, '2005-09-01'),
+    ('Mike', 'Johnson', '1982-11-15', '789 Maple Rd', 'mike.johnson@example.com', '5555555555', 122, '2012-09-01'),
+    ('Emily', 'Brown', '1979-03-25', '321 Elm St', 'emily.brown@example.com', '7777777777', 12, '2008-09-01'),
+    ('David', 'Lee', '1985-01-05', '987 Pine Dr', 'david.lee@example.com', '9999999999', 54, '2015-09-01');
+
+
+INSERT INTO department (department_name, faculty_id)
+VALUES
+    ( 'Computer Science', 1 ),
+    ( 'Biology', 2),
+    ( 'Mathematics', 3),
+    ( 'History', 4),
+    ( 'Chemistry', 5);
+
+
+INSERT INTO courses (course_name, credits, department_id, instructor_id)
+VALUES
+    ('Introduction to Programming', 3, 1, 1),
+    ('Biology 101', 4, 2, 2),
+    ('Calculus I', 4, 3, 3),
+    ('World History', 3, 4, 4),
+    ('Chemical Reactions', 3, 5, 5);
+
+
+INSERT INTO student (student_id, first_name, last_name, date_of_birth, address, email, phone,admission_date, department_id)
+VALUES
+    ('UAT2023-0001', 'Alice', 'Johnson', '2002-07-15', '789 Elm St', 'alice.johnson@example.com', '1111111111',  '2023-09-01', 1),
+    ('UAT2023-0002', 'Bob', 'Smith', '2003-02-25', '456 Oak Ave', 'bob.smith@example.com', '2222222222',  '2023-09-01', 2),
+    ('UAT2023-0003', 'Eva', 'Lee', '2001-11-08', '123 Maple Rd', 'eva.lee@example.com', '3333333333',  '2023-09-01', 3),
+    ('UAT2023-0004', 'George', 'Brown', '2004-04-10', '987 Pine Dr', 'george.brown@example.com',  'History', '2023-09-01', 4),
+    ('UAT2023-0005', 'Lily', 'Davis', '2000-12-05', '321 Main St', 'lily.davis@example.com', '5555555555',  '2023-09-01', 5);
+
+
+INSERT INTO staff (first_name, last_name, date_of_birth, address, email, phone, department_id, hire_date)
+VALUES
+    ('Michael', 'Smith', '1978-09-10', '789 Oak Ave', 'michael.smith@example.com', '6666666666', 1, '2010-09-01'),
+    ('Sarah', 'Johnson', '1985-03-20', '456 Elm St', 'sarah.johnson@example.com', '7777777777', 2, '2015-09-01'),
+    ('Andrew', 'Lee', '1982-06-25', '123 Pine Dr', 'andrew.lee@example.com', '8888888888', 3, '2012-09-01'),
+    ('Jessica', 'Brown', '1979-12-15', '987 Oak Ave', 'jessica.brown@example.com', '9999999999', 4, '2008-09-01'),
+    ('Daniel', 'Davis', '1984-04-05', '321 Elm St', 'daniel.davis@example.com', '1010101010', 5, '2016-09-01');
+
+
+//Update 
+
+UPDATE staff
+SET first_name = 'John', last_name = 'Smith'
+WHERE staff_id = 1;
+
+UPDATE staff
+SET first_name = 'Jane', last_name = 'Doe'
+WHERE staff_id = 2;
+
+
+// SELECT
+SELECT s.staff_id, CONCAT(s.first_name, ' ', s.last_name) AS full_name, s.date_of_birth, s.address, s.email, s.phone, d.department_name, d.date AS department_date, s.hire_date
+FROM staff s
+JOIN department d ON s.department_id = d.department_id;
+
+SELECT 
+    student_id,
+    CONCAT(first_name, ' ', last_name) AS full_name,
+    date_of_birth,
+    address,
+    email,
+    phone,
+    admission_date,
+    department_id
+FROM student;
+
+
+
+-- Step 1: Rename "department_id" to "department" in the "faculty" table
+EXEC sp_RENAME 'faculty.department_id', 'department', 'COLUMN';
+
+SELECT *
+FROM faculty
+
+-- Step 2: Create a trigger on the "department" table to increment the "faculty_count" column in the "faculty" table
+CREATE TRIGGER TRG_Department_AfterInsert
+ON department
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @facultyId INT;
+    SELECT @facultyId = faculty_id FROM inserted;
+
+    UPDATE faculty
+    SET department = department + 1
+    WHERE faculty_id = @facultyId;
+END;
+
+-- is a syntax that is quicker to remove all data in a table that DELETE
+TRUNCATE TABLE department;
+
+-- deleting all fk relates in courses and students
+DELETE FROM courses
+WHERE department_id IN (SELECT department_id FROM department);
+
+
+-- Delete the existing trigger if it exists
+IF OBJECT_ID('TRG_Department_AfterInsert', 'TR') IS NOT NULL
+    DROP TRIGGER TRG_Department_AfterInsert;
+GO
+
+-- Create the updated trigger on the "department" table
+CREATE TRIGGER TRG_Department_AfterInsert
+ON department
+AFTER INSERT
+AS
+BEGIN
+    UPDATE f
+    SET f.faculty_count = f.faculty_count + 1
+    FROM faculty f
+    INNER JOIN inserted i ON f.faculty_id = i.faculty_id;
+END;
+
+DELETE FROM student
+WHERE department_id IN (SELECT department_id FROM department);
+
+
+--creating a database with diff filegroups
+-- Create a new database
+CREATE DATABASE YourDatabaseName;
+GO
+
+-- Add a new filegroup and corresponding data file
+ALTER DATABASE YourDatabaseName
+ADD FILEGROUP FileGroup1;
+
+ALTER DATABASE YourDatabaseName
+ADD FILE
+(
+    NAME = DataFile1,
+    FILENAME = 'C:\YourDatabasePath\DataFile1.ndf',
+    SIZE = 100MB,
+    MAXSIZE = UNLIMITED,
+    FILEGROWTH = 20MB
+)
+TO FILEGROUP FileGroup1;
+GO
+
+-- Add another filegroup and corresponding data file
+ALTER DATABASE YourDatabaseName
+ADD FILEGROUP FileGroup2;
+
+ALTER DATABASE YourDatabaseName
+ADD FILE
+(
+    NAME = DataFile2,
+    FILENAME = 'C:\YourDatabasePath\DataFile2.ndf',
+    SIZE = 100MB,
+    MAXSIZE = UNLIMITED,
+    FILEGROWTH = 20MB
+)
+TO FILEGROUP FileGroup2;
+GO
+
+-- creating users and giving them role
+USE master;
+
+CREATE LOGIN SarahLogin WITH PASSWORD = 'StrongPassword123';
+
+USE Agege; -- Replace with the actual database name
+
+CREATE USER Sarah FOR LOGIN SarahLogin;
+
+
+ALTER ROLE db_datareader ADD MEMBER Sarah;
+
+ALTER ROLE db_datareader ADD MEMBER John;
+ALTER ROLE db_datawriter ADD MEMBER John;
+
+--custom role
+CREATE ROLE CashierRole;
+GRANT SELECT, INSERT, UPDATE, DELETE ON dbo.Sales TO CashierRole;
+
+DENY SELECT, INSERT, UPDATE, DELETE ON dbo.Sales TO CashierRole;
+
+
+-- Creating a new batch to insert student records into the 'Students' table
+
+-- Declare variables to hold student information
+DECLARE @StudentID INT, @FirstName NVARCHAR(50), @LastName NVARCHAR(50)
+
+-- Start of the batch
+BEGIN
+    -- Initialize variables with student information
+    SET @StudentID = 101
+    SET @FirstName = 'John'
+    SET @LastName = 'Doe'
+
+    -- Insert the first student record into the 'Students' table
+    INSERT INTO Students (StudentID, FirstName, LastName)
+    VALUES (@StudentID, @FirstName, @LastName)
+
+    -- Print a message indicating the first student record has been inserted
+    PRINT 'Inserted student: ' + @FirstName + ' ' + @LastName
+
+    -- Move to the next student
+    SET @StudentID = @StudentID + 1
+    SET @FirstName = 'Jane'
+    SET @LastName = 'Smith'
+
+    -- Insert the second student record into the 'Students' table
+    INSERT INTO Students (StudentID, FirstName, LastName)
+    VALUES (@StudentID, @FirstName, @LastName)
+
+    -- Print a message indicating the second student record has been inserted
+    PRINT 'Inserted student: ' + @FirstName + ' ' + @LastName
+END -- End of the batch
