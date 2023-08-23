@@ -352,3 +352,94 @@ BEGIN
     RETURN @age;
 END;
 
+-- Autocommit mode
+INSERT INTO Students (FirstName, LastName, GPA) VALUES ('Alice', 'Johnson', 3.8);
+
+--Explicit trans
+BEGIN TRAN
+UPDATE Students SET GPA = 4.0 WHERE StudentID = 123;
+DELETE FROM Enrollments WHERE StudentID = 123;
+COMMIT;
+
+
+-- implicit trans
+BEGIN TRY
+    -- Start an implicit transaction
+    BEGIN TRAN;
+
+    -- Update the student's GPA
+    UPDATE Students
+    SET GPA = 3.8
+    WHERE StudentID = 123;
+
+    -- Update the student's enrollment status
+    UPDATE Enrollments
+    SET Status = 'Completed'
+    WHERE StudentID = 123;
+
+    -- If no errors, commit the transaction
+    COMMIT;
+    PRINT 'Transaction committed successfully.';
+END TRY
+BEGIN CATCH
+    -- If an error occurs, rollback the transaction
+    ROLLBACK;
+    PRINT 'An error occurred. Transaction rolled back.';
+    -- Display the error message
+    PRINT ERROR_MESSAGE();
+END CATCH;
+
+-- explicit trans
+BEGIN TRY
+    -- Explicitly start a transaction
+    BEGIN TRAN MyTransaction;
+
+    -- Update the student's GPA
+    UPDATE Students
+    SET GPA = 3.8
+    WHERE StudentID = 123;
+
+    -- Update the student's enrollment status
+    UPDATE Enrollments
+    SET Status = 'Completed'
+    WHERE StudentID = 123;
+
+    -- If no errors, commit the transaction
+    COMMIT TRAN MyTransaction;
+    PRINT 'Transaction committed successfully.';
+END TRY
+BEGIN CATCH
+    -- If an error occurs, rollback the transaction
+    ROLLBACK TRAN MyTransaction;
+    PRINT 'An error occurred. Transaction rolled back.';
+    -- Display the error message
+    PRINT ERROR_MESSAGE();
+END CATCH;
+
+--batch-scope trans
+-- Start a batch-scoped transaction
+BEGIN TRAN;
+
+-- Update the student's GPA
+UPDATE Students
+SET GPA = 3.8
+WHERE StudentID = 123;
+
+-- Update the student's enrollment status
+UPDATE Enrollments
+SET Status = 'Completed'
+WHERE StudentID = 123;
+
+-- Only commit if both updates succeeded
+IF @@ERROR = 0
+BEGIN
+    -- Commit the entire batch as a transaction
+    COMMIT;
+    PRINT 'Transaction committed successfully.';
+END
+ELSE
+BEGIN
+    -- Display the error message
+    PRINT 'An error occurred.';
+    PRINT ERROR_MESSAGE();
+END;
