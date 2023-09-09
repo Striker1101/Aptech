@@ -1,0 +1,84 @@
+# Exercise 04 - removeFromArray
+
+Implement a function that takes an array and some other arguments then removes the other arguments from that array:
+
+```javascript
+removeFromArray([1, 2, 3, 4], 3); // should remove 3 and return [1,2,4]
+```
+
+## Hints
+
+The first test on this one is fairly easy, but there are a few things to think about(or google) here for the later tests:
+
+- how to remove a single element from an array
+- how to deal with multiple optional arguments in a javascript function
+- [Check this link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments).  Scroll down to the bit about `Array.from` or the spread operator. - [Or this link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters).
+  
+
+
+
+# Exercise 05 - sumAll
+
+Implement a function that takes 2 integers and returns the sum of every number between(and including) them:
+
+```javascript
+sumAll(1, 4) // returns the sum of 1 + 2 + 3 + 4 which is 10
+```
+
+
+## Hints
+
+Think about how you would do this on pen and paper and then how you might translate that process into code:
+- make sure you pay attention to the function parameters
+- create a variable to hold the final sum
+- loop through the given numbers ([link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration))
+- on each iteration add the number to the sum
+- return the sum after finishing the loop
+
+
+# Exercise 06 - leapYears
+
+Create a function that determines whether or not a given year is a leap year. Leap years are determined by the following rules:
+
+> Leap years are years divisible by four (like 1984 and 2004). However, years divisible by 100 are not leap years (such as 1800 and 1900) unless they are divisible by 400 (like 1600 and 2000, which were in fact leap years). (Yes, it's all pretty confusing)
+>
+> -- <cite>[Learn to Program](https://pine.fm/LearnToProgram/chap_06.html) by Chris Pine</cite>
+
+```javascript
+leapYears(2000) // is a leap year: returns true
+leapYears(1985) // is not a leap year: returns false
+```
+
+
+## Hints
+- use an `if` statement and `&&` to make sure all the conditions are met properly
+
+
+# Exercise 07 - tempConversion
+
+Write two functions that convert temperatures from Fahrenheit to Celsius, and vice versa:
+```
+ftoc(32) // fahrenheit to celsius, should return 0
+
+ctof(0) // celsius to fahrenheit, should return 32
+```
+
+Because we are human, we want the result temperature to be rounded to one decimal place: i.e., `ftoc(100)` should return `37.8` and not `37.77777777777778`.
+
+This exercise asks you to create more than one function so the `module.exports` section of the spec file looks a little different this time.  Nothing to worry about, we're just packaging both functions into a single object to be exported.
+
+## Hints
+- You can find the relevant formulae on [Wikipedia](https://en.wikipedia.org/wiki/Conversion_of_units_of_temperature).
+
+- Try to find by yourself on the Internet how to round a number to 1 decimal place in JavaScript. If you struggle, have a look [here](https://stackoverflow.com/q/7342957/5433628).
+
+
+# Exercise 08 - Calculator
+
+The goal for this exercise is to create a calculator that does the following:
+
+add, subtract, get the sum, multiply, get the power, and find the factorial
+
+In order to do this please fill out each function with your solution. Make sure to return the value so you can test it in Jest! To see the expected value
+take a look at the spec file that houses the Jest test cases.
+
